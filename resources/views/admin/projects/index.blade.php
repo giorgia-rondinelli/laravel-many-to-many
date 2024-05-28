@@ -9,6 +9,7 @@
 
                 <th scope="col">Titolo</th>
                 <th scope="col">Technologia</th>
+                <th scope="col">Tipologia </th>
                 <th scope="col">Linguaggio </th>
                 <th scope="col">Stato</th>
                 </tr>
@@ -23,6 +24,13 @@
 
                 <td> <a href="{{route('admin.projects.show', $project)}}"><i class="fa-solid fa-circle-info"></i> </a>{{$project->title}}</td>
                 <td>{{$project->technology?->name}}</td>
+                <td>
+                @forelse ($project->types as $type )
+                    {{$type->name}},
+                @empty
+                    -no tipologia-
+                @endforelse
+                </td>
                 <td>{{$project->languages}}</td>
                 @if ($project->status)
                     <td>pubblico</td>

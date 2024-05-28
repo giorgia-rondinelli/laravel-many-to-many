@@ -4,7 +4,17 @@
 <div class="container mt-4 ">
     <h1>{{$project->title}}</h1>
     <div class="d-flex justify-content-between ">
-        <p>Data di creazione: {{$project->created_at}}</p>
+        <div class="d-flex">
+           <p>Data di creazione: {{$project->created_at}}</p>
+
+           @foreach($project->types as $type )
+                    <p class=" ms-2 badge text-bg-secondary">{{$type->name}}</p>
+
+
+            @endforeach
+
+        </div>
+
         @if ($project->status)
         <p class="badge text-bg-primary ">Pubblico</p>
         @else
@@ -17,7 +27,7 @@
     <div class="mb-4">{{$project->description}}</div>
     <h4>Linguaggio</h4>
     <div>{{$project->languages}}</div>
-    <h4>Immagine</h4>
+
     <div><img src="{{asset('storage/'.$project->image)}}" alt=""></div>
 
     <div class="d-flex">
