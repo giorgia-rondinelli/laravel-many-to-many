@@ -31,7 +31,24 @@
                 <option @if (old('technology_id',$project->technology?->id)== $technology->id) selected @endif value="{{$technology->id}}">{{$technology->name}}</option>
                @endforeach
               </select>
+        </div>
+
+        <div class="mb-3 ">
+            <label for="title" class="form-label">Tipologia</label>
+            <div class=" btn-group btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($types as $type )
+                <input name="types[]" type="checkbox" class="btn-check" id="tag_{{$type->id}}" autocomplete="off" value="{{$type->id}}"
+                    @if ($errors->any() && in_array($type->id, old('types',[]))|| !$errors->any() && $project->types->contains($type) ) checked @endif>
+                <label class="btn btn-outline-primary" for="tag_{{$type->id}}">{{$type->name}}</label>
+
+                @endforeach
+
+
             </div>
+
+
+        </div>
+
         <div class="mb-3">
         <label class="form-label">Linguaggio</label>
         <input value="{{old('languages', $project->languages) }}" type="text" class="form-control" >

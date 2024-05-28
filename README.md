@@ -1,2 +1,2 @@
-Laravel Boolfolio - Base
+Laravel Boolfolio - many to many
 ===

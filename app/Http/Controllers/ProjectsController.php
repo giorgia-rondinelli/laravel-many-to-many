@@ -82,7 +82,8 @@ class ProjectsController extends Controller
 
     {
         $technologies=Technology::all();
-        return view('admin.projects.edit',compact(['project','technologies']));
+        $types= Type::all();
+        return view('admin.projects.edit',compact(['project','technologies','types']));
     }
 
     /**
@@ -100,7 +101,18 @@ class ProjectsController extends Controller
 
         $form_data['slug']=helper::generateSlug($form_data['title'],new Project);
 
+
         $project->update($form_data);
+         if(array_key_exists('types',$form_data)){
+            $project->types()->sync($form_data['types']);
+
+        }
+        else{
+             $project->types()->detach();
+        }
+
+
+
         return redirect()->route('admin.projects.show',compact('project'));
     }
 
