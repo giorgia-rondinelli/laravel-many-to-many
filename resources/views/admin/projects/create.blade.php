@@ -46,6 +46,24 @@
            @endforeach
           </select>
         </div>
+
+
+        <div class="mb-3 ">
+            <label for="title" class="form-label">Tipologia</label>
+            <div class=" btn-group btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
+                @foreach ($types as $type )
+                <input name="types[]" type="checkbox" class="btn-check" id="tag_{{$type->id}}" autocomplete="off" value="{{$type->id}}"
+                 @if (in_array($type->id, old('types',[]))) checked @endif>
+                <label class="btn btn-outline-primary" for="tag_{{$type->id}}">{{$type->name}}</label>
+
+                @endforeach
+
+
+          </div>
+
+
+            </div>
+
         <div class="mb-3">
         <label for="languages" class="form-label">Linguaggio</label>
         <input name="languages" value="{{old('languages',) }}" type="text" class="form-control" >
